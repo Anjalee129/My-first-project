@@ -26,3 +26,4 @@ def convert_grade_to_gpa(grade):
 def calculate_gpa(grades):
     gpa_values = [convert_grade_to_gpa(g) for g in grades]
     return sum(gpa_values) / len(gpa_values)
+
