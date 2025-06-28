@@ -12,8 +12,16 @@ def main():
         grades = []
 
         for i in range(subject_count):
-            mark = float(input(f"Enter mark for subject {i + 1}: "))
-            marks.append(mark)
+            while True:
+                try:
+                    mark = float(input(f"Enter mark for subject {i + 1}: "))
+                    if 0 <= mark <= 100:
+                        marks.append(mark)
+                        break
+                    else:
+                        print("Mark must be between 0 and 100.")
+                except ValueError:
+                    print("Invalid input. Please enter a number.")
 
         avg = calculate_average(marks)
         for mark in marks:
