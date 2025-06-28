@@ -79,6 +79,9 @@ def main():
         else:
             print("Invalid choice. Please enter 1, 2, or 3.")
 
+
+print("This feature was added by a friend 🚀")
+
 if __name__ == "__main__":
     main()
 
