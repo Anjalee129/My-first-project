@@ -1,3 +1,3 @@
-<<<<<<< HEAD
+<<<<<<<
 # My-first-project
 >>>>>>>
