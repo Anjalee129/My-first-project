@@ -1,5 +1,7 @@
+# Import functions from the external module
 from functions import calculate_average, assign_grade, calculate_gpa
 
+# Function to add a new student record
 def add_student():
     student_name = input("Enter student name: ")
     subject_count = int(input("How many subjects? "))
@@ -7,6 +9,7 @@ def add_student():
     marks = []
     grades = []
 
+    # Loop to collect marks for each subject with validation
     for i in range(subject_count):
         while True:
             try:
@@ -19,6 +22,7 @@ def add_student():
             except ValueError:
                 print("Invalid input. Please enter a number.")
 
+    # Calculate average, grades, final grade, and GPA
     avg = calculate_average(marks)
     for mark in marks:
         grades.append(assign_grade(mark))
@@ -26,7 +30,7 @@ def add_student():
     final_grade = assign_grade(avg)
     gpa = calculate_gpa(grades)
 
-    # Show results
+    # Show student report
     print(f"\n--- Report for {student_name} ---")
     print(f"Marks: {marks}")
     print(f"Grades: {grades}")
@@ -34,23 +38,26 @@ def add_student():
     print(f"Final Grade: {final_grade}")
     print(f"GPA: {gpa:.2f}")
 
-    # Write to file
+    # Save the record to a file
     with open("grades.txt", "a") as file:
         file.write(f"{student_name}, Marks: {marks}, Grades: {grades}, GPA: {gpa:.2f}\n")
 
-
+# Function to delete a student record by name
 def delete_student():
     name_to_delete = input("Enter the student's name to delete: ")
     try:
         with open("grades.txt", "r") as file:
             lines = file.readlines()
+
         with open("grades.txt", "w") as file:
             deleted = False
             for line in lines:
+                # Keep lines that don't match the student's name
                 if not line.startswith(name_to_delete + ","):
                     file.write(line)
                 else:
                     deleted = True
+
         if deleted:
             print(f"{name_to_delete}'s record deleted.")
         else:
@@ -58,6 +65,7 @@ def delete_student():
     except FileNotFoundError:
         print("grades.txt not found.")
 
+# Main function to display the menu and handle user choices
 def main():
     print("🎓 Welcome to the Student Grade Tracker\n")
 
@@ -79,6 +87,7 @@ def main():
         else:
             print("Invalid choice. Please enter 1, 2, or 3.")
 
+# Run the program only if executed directly (not imported)
 if __name__ == "__main__":
     main()
 
