@@ -30,3 +30,18 @@ def convert_grade_to_gpa(grade):
 def calculate_gpa(grades):
     gpa_values = [convert_grade_to_gpa(g) for g in grades]  # Convert each grade to GPA
     return sum(gpa_values) / len(gpa_values)                # Return the average GPA
+
+# Function to process a list of student mark lists and return their grades and GPA
+def process_students_marks(list_of_marks):
+    results = []
+    for marks in list_of_marks:
+        average = calculate_average(marks)
+        grade = assign_grade(average)
+        gpa = convert_grade_to_gpa(grade)
+        results.append({
+            'marks': marks,
+            'average': average,
+            'grade': grade,
+            'gpa': gpa
+        })
+    return results
